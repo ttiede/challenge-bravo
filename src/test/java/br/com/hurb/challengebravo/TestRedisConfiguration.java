@@ -15,6 +15,8 @@ import redis.embedded.RedisServer;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
@@ -53,7 +55,8 @@ class CurrencyRepositoryIntegrationTest {
 
         Currency saved = currencyRepository.save(currency);
         assertNotNull(saved);
-        Currency search = (Currency) currencyRepository.findAll();
+        List<Currency> search = (List<Currency>) currencyRepository.findAll();
+        Optional<Currency> search2 = currencyRepository.findById(id.toString());
         assertNotNull(saved);
 
     }
