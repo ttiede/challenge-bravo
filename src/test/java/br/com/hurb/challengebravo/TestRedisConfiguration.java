@@ -56,8 +56,9 @@ class CurrencyRepositoryIntegrationTest {
         Currency saved = currencyRepository.save(currency);
         assertNotNull(saved);
         List<Currency> search = (List<Currency>) currencyRepository.findAll();
+        assertNotNull(search);
         Optional<Currency> search2 = currencyRepository.findById(id.toString());
-        assertNotNull(saved);
+        assertNotNull(search2);
 
     }
 }
