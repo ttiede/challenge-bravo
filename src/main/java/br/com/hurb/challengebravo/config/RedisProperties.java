@@ -1,13 +1,16 @@
 package br.com.hurb.challengebravo.config;
 
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-@Data
+
 @Configuration
 public class RedisProperties {
+    @Getter
     private int redisPort;
+    @Getter
     private String redisHost;
 
     public RedisProperties(

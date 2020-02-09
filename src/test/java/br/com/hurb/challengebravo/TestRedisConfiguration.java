@@ -1,7 +1,9 @@
 package br.com.hurb.challengebravo;
 
+
 import br.com.hurb.challengebravo.config.RedisProperties;
 import br.com.hurb.challengebravo.domain.Currency;
+import br.com.hurb.challengebravo.repository.CurrencyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import redis.embedded.RedisServer;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+
 import java.util.UUID;
 
 import static org.junit.Assert.assertNotNull;
@@ -38,17 +41,17 @@ public class TestRedisConfiguration {
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TestRedisConfiguration.class)
-class UserRepositoryIntegrationTest {
+class CurrencyRepositoryIntegrationTest {
 
     @Autowired
     private CurrencyRepository currencyRepository;
 
     @Test
-    public void shouldSaveUser_toRedis() {
+    public void shouldSaveCurrency_toRedis() {
         UUID id = UUID.randomUUID();
-        Currency user = new Currency(id.toString(), "name", "1");
+        Currency currency = new Currency(id.toString(), "name", "1");
 
-        Currency saved = currencyRepository.save(user);
+        Currency saved = currencyRepository.save(currency);
         assertNotNull(saved);
         Currency search = (Currency) currencyRepository.findAll();
         assertNotNull(saved);
