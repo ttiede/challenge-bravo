@@ -1,6 +1,5 @@
 package br.com.hurb.challengebravo;
 
-
 import br.com.hurb.challengebravo.config.RedisProperties;
 import br.com.hurb.challengebravo.domain.Currency;
 import br.com.hurb.challengebravo.repository.CurrencyRepository;
@@ -15,6 +14,7 @@ import redis.embedded.RedisServer;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -51,14 +51,14 @@ class CurrencyRepositoryIntegrationTest {
     @Test
     public void shouldSaveCurrency_toRedis() {
         UUID id = UUID.randomUUID();
-        Currency currency = new Currency(id.toString(), "name", "1");
+        BigDecimal value = new BigDecimal(1);
+        Currency currency = new Currency(id.toString(), "name", value);
 
         Currency saved = currencyRepository.save(currency);
         assertNotNull(saved);
         List<Currency> search = (List<Currency>) currencyRepository.findAll();
-        assertNotNull(search);
         Optional<Currency> search2 = currencyRepository.findById(id.toString());
-        assertNotNull(search2);
+        assertNotNull(saved);
 
     }
 }
