@@ -1,28 +1,27 @@
 package br.com.hurb.challengebravo.response;
 
 import java.io.Serializable;
-import java.util.Map;
 import java.util.Objects;
 
 public class ResponseConvertedCurrency implements Serializable {
-    private Map<String, CurrencyResponse> original;
-    private Map<String, CurrencyResponse> result;
+    private CurrencyResponse original;
+    private CurrencyResponse result;
 
     public ResponseConvertedCurrency() { }
 
-    public Map<String, CurrencyResponse> getOriginal() {
+    public CurrencyResponse getOriginal() {
         return original;
     }
 
-    public void setOriginal(Map<String, CurrencyResponse> original) {
+    public void setOriginal(CurrencyResponse original) {
         this.original = original;
     }
 
-    public Map<String, CurrencyResponse> getResult() {
+    public CurrencyResponse getResult() {
         return result;
     }
 
-    public void setResult(Map<String, CurrencyResponse> result) {
+    public void setResult(CurrencyResponse result) {
         this.result = result;
     }
 

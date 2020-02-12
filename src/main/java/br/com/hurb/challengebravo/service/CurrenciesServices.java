@@ -1,5 +1,7 @@
 package br.com.hurb.challengebravo.service;
 
+import br.com.hurb.challengebravo.exception.CurrenciesNotFoundException;
+import br.com.hurb.challengebravo.exception.CurrenciesServicesException;
 import br.com.hurb.challengebravo.domain.BaseCurrency;
 import br.com.hurb.challengebravo.domain.Currency;
 import br.com.hurb.challengebravo.repository.BaseCurrencyRepository;
@@ -11,12 +13,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CurrenciesServices {
@@ -27,44 +26,38 @@ public class CurrenciesServices {
     private static final Logger logger = LoggerFactory.getLogger(ResponseConvertedCurrency.class);
 
     @Cacheable("currency")
-    public ResponseConvertedCurrency converting(String origin, String destiny, BigDecimal amount) {
+    public ResponseConvertedCurrency converting(String originParam, String destinyParams, BigDecimal amountParams) {
         Optional<BaseCurrency> converting = baseCurrencyRepository.findById("Base");
-        ResponseConvertedCurrency response = new ResponseConvertedCurrency();
         try {
-            List<Currency> originList = converting.get().getCurrencies().stream()
-                .filter(s -> origin.equals(s.getName()))
-                .collect(Collectors.toList());
+            Currency originValue = converting.get().getCurrencies().stream()
+                .filter(s -> originParam.equals(s.getName()))
+                .findFirst().orElse(null);
 
-            List<Currency> destinyList = converting.get().getCurrencies().stream()
-                .filter(s -> destiny.equals(s.getName()))
-                .collect(Collectors.toList());
+            Currency destinyValue = converting.get().getCurrencies().stream()
+                .filter(s -> destinyParams.equals(s.getName()))
+                .findFirst().orElse(null);
 
+            if (destinyValue == null || originValue == null) {
+                throw new CurrenciesNotFoundException("Currencies not found");
+            }
 
-            Map<String, CurrencyResponse> original = new HashMap<>();
-            original.put("original",
-                new CurrencyResponse(
-                    originList.get(0).getName()
-                    ,
-                    originList.get(0).getValue()
-                )
-            );
-            Map<String, CurrencyResponse> result = new HashMap<>();
-            result.put("result",
-                new CurrencyResponse(
-                    destinyList.get(0).getName()
-                    ,
-                    getConversionCurrencies(originList.get(0), destinyList.get(0), amount)
-                )
-            );
-            response.setOriginal(original);
-            response.setResult(result);
-        } catch (Exception e) {
+            ResponseConvertedCurrency result = new ResponseConvertedCurrency();
+            result.setOriginal(new CurrencyResponse(originParam, originValue.getValue()));
+
+            result.setResult(new CurrencyResponse(destinyParams, getConversionCurrencies(originValue, destinyValue, amountParams)));
+
+            return result;
+        } catch (CurrenciesNotFoundException e) {
             logger.error(e.getMessage());
+            throw new CurrenciesNotFoundException(e.getMessage());
+        } catch (Throwable e) {
+            logger.error(e.getMessage());
+            throw new CurrenciesServicesException(e.getMessage());
         }
-        return response;
     }
 
     private BigDecimal getConversionCurrencies(Currency from, Currency to, BigDecimal amount) {
+        if(amount.compareTo(BigDecimal.ZERO) == 0) return amount;
         if (from.getName().equals(this.baseCurrency)) return amount.multiply(to.getValue());
         if (to.getName().equals(this.baseCurrency)) return amount.divide(from.getValue());
 
