@@ -18,7 +18,7 @@ public class CurrencyController {
     CurrenciesServices currenciesServices;
 
     @GetMapping("/convert/{origin}/{destiny}/{amount}")
-    public ResponseEntity<ResponseConvertedCurrency> findStudentById(@PathVariable String origin,
+    public ResponseEntity<ResponseConvertedCurrency> exchangeCurrency(@PathVariable String origin,
 
                                                                      @PathVariable String destiny, @PathVariable BigDecimal amount) {
         ResponseConvertedCurrency result;

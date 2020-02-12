@@ -8,7 +8,7 @@ import redis.embedded.RedisServer;
 
 @Configuration
 public class ResourcesConfig {
-    @Bean("dataLoader1")
+    @Bean("dataLoaderq1")
     @DependsOn("redisServer")
     public DataLoaderInit dataLoader(){
         return new DataLoaderInit();
