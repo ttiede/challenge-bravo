@@ -8,13 +8,15 @@ import redis.embedded.RedisServer;
 
 @Configuration
 public class ResourcesConfig {
-    @Bean("dataLoaderq1")
+    @Bean("dataLoaderInit")
     @DependsOn("redisServer")
     public DataLoaderInit dataLoader(){
         return new DataLoaderInit();
     }
     @Bean("redisServer")
-    public RedisServer redisServe() {
-        return new RedisServer();
+    public RedisServer redisServer(RedisProperties redisProperties) {
+        RedisServer redisServer = new RedisServer(redisProperties.getRedisPort());
+        redisServer.start();
+        return redisServer;
     }
 }
