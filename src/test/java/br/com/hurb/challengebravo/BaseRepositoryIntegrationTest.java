@@ -22,9 +22,8 @@ import java.util.UUID;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {RedisProperties.class, RedisConfiguration.class, DataLoaderInit.class, ResourcesConfig.class})
-@EnableAutoConfiguration
-public class UserRepositoryIntegrationTest {
+@SpringBootTest
+public class BaseRepositoryIntegrationTest {
     @Autowired
     private BaseCurrencyRepository baseCurrencyRepository;
 
