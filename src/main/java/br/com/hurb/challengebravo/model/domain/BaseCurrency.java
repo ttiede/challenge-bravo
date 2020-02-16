@@ -1,4 +1,4 @@
-package br.com.hurb.challengebravo.domain;
+package br.com.hurb.challengebravo.model.domain;
 
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.index.Indexed;

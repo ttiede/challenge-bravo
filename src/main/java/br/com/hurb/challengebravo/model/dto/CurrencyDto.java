@@ -1,4 +1,4 @@
-package br.com.hurb.challengebravo.DTO;
+package br.com.hurb.challengebravo.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @JsonSerialize
-public class CurrencyDTO implements Serializable {
+public class CurrencyDto implements Serializable {
     @JsonProperty
     private BigDecimal BRL, EUR, BTC, ETH, USD;
 

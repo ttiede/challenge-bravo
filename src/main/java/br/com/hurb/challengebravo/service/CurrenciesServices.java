@@ -1,12 +1,12 @@
 package br.com.hurb.challengebravo.service;
 
-import br.com.hurb.challengebravo.exception.CurrenciesNotFoundException;
-import br.com.hurb.challengebravo.exception.CurrenciesServicesException;
-import br.com.hurb.challengebravo.domain.BaseCurrency;
-import br.com.hurb.challengebravo.domain.Currency;
-import br.com.hurb.challengebravo.repository.BaseCurrencyRepository;
-import br.com.hurb.challengebravo.response.CurrencyResponse;
-import br.com.hurb.challengebravo.response.ResponseConvertedCurrency;
+import br.com.hurb.challengebravo.error.CurrenciesNotFoundException;
+import br.com.hurb.challengebravo.error.CurrenciesServicesException;
+import br.com.hurb.challengebravo.model.domain.BaseCurrency;
+import br.com.hurb.challengebravo.model.domain.Currency;
+import br.com.hurb.challengebravo.model.repository.BaseCurrencyRepository;
+import br.com.hurb.challengebravo.view.response.CurrencyResponse;
+import br.com.hurb.challengebravo.view.response.ExchangeCurrencyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,10 +23,10 @@ public class CurrenciesServices {
     private BaseCurrencyRepository baseCurrencyRepository;
     @Value("${currency.base}")
     String baseCurrency;
-    private static final Logger logger = LoggerFactory.getLogger(ResponseConvertedCurrency.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExchangeCurrencyResponse.class);
 
     @Cacheable("currency")
-    public ResponseConvertedCurrency converting(String originParam, String destinyParams, BigDecimal amountParams) {
+    public ExchangeCurrencyResponse converting(String originParam, String destinyParams, BigDecimal amountParams) {
         Optional<BaseCurrency> converting = baseCurrencyRepository.findById("Base");
         try {
             Currency originValue = converting.get().getCurrencies().stream()
@@ -41,7 +41,7 @@ public class CurrenciesServices {
                 throw new CurrenciesNotFoundException("Currencies not found");
             }
 
-            ResponseConvertedCurrency result = new ResponseConvertedCurrency();
+            ExchangeCurrencyResponse result = new ExchangeCurrencyResponse();
             result.setOriginal(new CurrencyResponse(originParam, originValue.getValue()));
 
             result.setResult(new CurrencyResponse(destinyParams, getConversionCurrencies(originValue, destinyValue, amountParams)));

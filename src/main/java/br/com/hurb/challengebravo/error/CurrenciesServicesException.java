@@ -1,13 +1,11 @@
-package br.com.hurb.challengebravo.exception;
-
+package br.com.hurb.challengebravo.error;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 @ResponseStatus(HttpStatus.NOT_FOUND)
 
-public class CurrenciesNotFoundException extends RuntimeException {
-    public CurrenciesNotFoundException(String message) {
+public class CurrenciesServicesException extends RuntimeException {
+    public CurrenciesServicesException(String message) {
         super(message);
     }
 }

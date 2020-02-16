@@ -1,13 +1,13 @@
-package br.com.hurb.challengebravo.response;
+package br.com.hurb.challengebravo.view.response;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ResponseConvertedCurrency implements Serializable {
+public class ExchangeCurrencyResponse implements Serializable {
     private CurrencyResponse original;
     private CurrencyResponse result;
 
-    public ResponseConvertedCurrency() { }
+    public ExchangeCurrencyResponse() { }
 
     public CurrencyResponse getOriginal() {
         return original;
@@ -36,8 +36,8 @@ public class ResponseConvertedCurrency implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ResponseConvertedCurrency)) return false;
-        ResponseConvertedCurrency that = (ResponseConvertedCurrency) o;
+        if (!(o instanceof ExchangeCurrencyResponse)) return false;
+        ExchangeCurrencyResponse that = (ExchangeCurrencyResponse) o;
         return Objects.equals(getOriginal(), that.getOriginal()) &&
             Objects.equals(getResult(), that.getResult());
     }

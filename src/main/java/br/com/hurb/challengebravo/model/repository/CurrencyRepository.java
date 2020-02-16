@@ -1,6 +1,6 @@
-package br.com.hurb.challengebravo.repository;
+package br.com.hurb.challengebravo.model.repository;
 
-import br.com.hurb.challengebravo.domain.Currency;
+import br.com.hurb.challengebravo.model.domain.Currency;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

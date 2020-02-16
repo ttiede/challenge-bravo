@@ -1,6 +1,6 @@
 package br.com.hurb.challengebravo.service;
 
-import br.com.hurb.challengebravo.DTO.CurrencyDTO;
+import br.com.hurb.challengebravo.model.dto.CurrencyDto;
 import org.springframework.web.client.RestTemplate;
 
 public class CurrencyExternalService {
@@ -10,7 +10,7 @@ public class CurrencyExternalService {
         this.restTemplate = new RestTemplate();
     }
 
-    public CurrencyDTO listCurrencies(String url) {
-        return this.restTemplate.getForObject(url, CurrencyDTO.class);
+    public CurrencyDto listCurrencies(String url) {
+        return this.restTemplate.getForObject(url, CurrencyDto.class);
     }
 }

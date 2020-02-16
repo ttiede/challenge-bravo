@@ -1,4 +1,4 @@
-package br.com.hurb.challengebravo.response;
+package br.com.hurb.challengebravo.view.response;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
