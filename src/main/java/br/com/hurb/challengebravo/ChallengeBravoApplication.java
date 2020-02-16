@@ -13,8 +13,6 @@ public class ChallengeBravoApplication {
     private static final Logger LOGGER=LoggerFactory.getLogger(ChallengeBravoApplication.class);
 
     public static void main(String[] args) {
-		SpringApplication.run(ChallengeBravoApplication.class, args);
-
-	}
-
+        SpringApplication.run(ChallengeBravoApplication.class, args);
+    }
 }

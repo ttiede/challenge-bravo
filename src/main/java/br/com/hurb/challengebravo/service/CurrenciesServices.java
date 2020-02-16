@@ -44,7 +44,7 @@ public class CurrenciesServices {
             ExchangeCurrencyResponse result = new ExchangeCurrencyResponse();
             result.setOriginal(new CurrencyResponse(originParam, originValue.getValue()));
 
-            result.setResult(new CurrencyResponse(destinyParams, getConversionCurrencies(originValue, destinyValue, amountParams)));
+            result.setResult(new CurrencyResponse(destinyParams, calcConversionCurrencies(originValue, destinyValue, amountParams)));
 
             return result;
         } catch (CurrenciesNotFoundException e) {
@@ -56,7 +56,7 @@ public class CurrenciesServices {
         }
     }
 
-    private BigDecimal getConversionCurrencies(Currency from, Currency to, BigDecimal amount) {
+    private BigDecimal calcConversionCurrencies(Currency from, Currency to, BigDecimal amount) {
         if(amount.compareTo(BigDecimal.ZERO) == 0) return amount;
         if (from.getName().equals(this.baseCurrency)) return amount.multiply(to.getValue());
         if (to.getName().equals(this.baseCurrency)) return amount.divide(from.getValue());
