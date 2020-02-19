@@ -30,8 +30,8 @@ public class BaseRepositoryIntegrationTest {
     @Test
     public void shouldSaveBase_toRedis() {
         List<Currency> currencies = new ArrayList<>();
-        currencies.add(new Currency("BRL", "BRL", BigDecimal.TEN));
-        BaseCurrency baseCurrency = new BaseCurrency("Base", "USD", currencies);
+        currencies.add(new Currency("BRL", BigDecimal.TEN));
+        BaseCurrency baseCurrency = new BaseCurrency("Base", currencies);
 
         BaseCurrency saved = baseCurrencyRepository.save(baseCurrency);
 

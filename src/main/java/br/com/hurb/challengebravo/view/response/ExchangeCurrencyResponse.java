@@ -24,26 +24,4 @@ public class ExchangeCurrencyResponse implements Serializable {
     public void setResult(CurrencyResponse result) {
         this.result = result;
     }
-
-    @Override
-    public String toString() {
-        return "ResponseConvertedCurrency{" +
-            "original=" + original +
-            ", result=" + result +
-            '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ExchangeCurrencyResponse)) return false;
-        ExchangeCurrencyResponse that = (ExchangeCurrencyResponse) o;
-        return Objects.equals(getOriginal(), that.getOriginal()) &&
-            Objects.equals(getResult(), that.getResult());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getOriginal(), getResult());
-    }
 }

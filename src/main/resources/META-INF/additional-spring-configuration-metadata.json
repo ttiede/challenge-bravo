@@ -1,0 +1,88 @@
+{
+    "properties": [
+        {
+            "name": "currency.external.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.init."
+        },
+        {
+            "name": "currency.external.param",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.param."
+        },
+        {
+            "name": "currency.base",
+            "type": "java.lang.String",
+            "description": "Description for currency.base."
+        },
+        {
+            "name": "currency.list.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.list.init."
+        },
+        {
+            "name": "currency.external.url",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.url."
+        },
+        {
+            "name": "spring.redis.embedded",
+            "type": "java.lang.String",
+            "description": "Description for spring.redis.embedded."
+        },
+        {
+            "name": "currency.external.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.init."
+        },
+        {
+            "name": "currency.external.param",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.param."
+        },
+        {
+            "name": "currency.base",
+            "type": "java.lang.String",
+            "description": "Description for currency.base."
+        },
+        {
+            "name": "currency.list.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.list.init."
+        },
+        {
+            "name": "currency.external.url",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.url."
+        },
+        {
+            "name": "spring.redis.embedded",
+            "type": "java.lang.String",
+            "description": "Description for spring.redis.embedded."
+        },
+        {
+            "name": "currency.external.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.init."
+        },
+        {
+            "name": "currency.external.param",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.param."
+        },
+        {
+            "name": "currency.base",
+            "type": "java.lang.String",
+            "description": "Description for currency.base."
+        },
+        {
+            "name": "currency.list.init",
+            "type": "java.lang.String",
+            "description": "Description for currency.list.init."
+        },
+        {
+            "name": "currency.external.url",
+            "type": "java.lang.String",
+            "description": "Description for currency.external.url."
+        }
+    ] }

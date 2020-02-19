@@ -41,13 +41,13 @@ public class DataLoaderInit implements ApplicationRunner {
 
     private void PopulateCurrenciesInit(CurrencyDto response) {
         List<Currency> currencies = new ArrayList<>();
-        currencies.add(new Currency("BRL", "BRL", response.getBRL()));
-        currencies.add(new Currency("EUR", "EUR", response.getEUR()));
-        currencies.add(new Currency("BTC", "BTC", response.getBTC()));
-        currencies.add(new Currency("ETH", "ETH", response.getETH()));
-        currencies.add(new Currency("USD", "USD", response.getUSD()));
+        currencies.add(new Currency("BRL", response.getBRL()));
+        currencies.add(new Currency("EUR", response.getEUR()));
+        currencies.add(new Currency("BTC", response.getBTC()));
+        currencies.add(new Currency("ETH", response.getETH()));
+        currencies.add(new Currency("USD", response.getUSD()));
 
-        BaseCurrency baseCurrency = new BaseCurrency("Base", this.baseCurrency, currencies);
+        BaseCurrency baseCurrency = new BaseCurrency("Base", currencies);
 
         BaseCurrency saved = baseCurrencyRepository.save(baseCurrency);
         Optional<BaseCurrency> search = baseCurrencyRepository.findById(saved.getId());

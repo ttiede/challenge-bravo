@@ -10,8 +10,8 @@ import java.io.IOException;
 
 @Configuration
 public class RedisProperties {
-    private int redisPort;
-    private String redisHost;
+    private final int redisPort;
+    private final String redisHost;
     private RedisServer redisServer;
 
     public RedisProperties(
@@ -25,16 +25,8 @@ public class RedisProperties {
         return redisPort;
     }
 
-    public void setRedisPort(int redisPort) {
-        this.redisPort = redisPort;
-    }
-
     public String getRedisHost() {
         return redisHost;
-    }
-
-    public void setRedisHost(String redisHost) {
-        this.redisHost = redisHost;
     }
 
     @PostConstruct

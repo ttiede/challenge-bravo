@@ -13,13 +13,18 @@ import java.math.BigDecimal;
 @RequestMapping("/convert")
 public class CurrencyController {
 
-    @Autowired
+    final
     CurrenciesServices currenciesServices;
 
-    @GetMapping("/{origin}/{destiny}/{amount}")
+    public CurrencyController(CurrenciesServices currenciesServices) {
+        this.currenciesServices = currenciesServices;
+    }
+
+    @GetMapping("/{origin}/{destiny}/{amountParam}")
     public ResponseEntity<ExchangeCurrencyResponse> exchangeCurrency(@PathVariable String origin,
 
-                                                                     @PathVariable String destiny, @PathVariable BigDecimal amount) {
+                                                                     @PathVariable String destiny, @PathVariable String amountParam) {
+        BigDecimal amount = new BigDecimal(amountParam);
         ExchangeCurrencyResponse result;
         result = currenciesServices.converting(origin, destiny, amount);
         return new ResponseEntity<>(result, HttpStatus.OK);
